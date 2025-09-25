@@ -1,0 +1,17 @@
+{
+  "participants": {},
+  "schedule": {
+    "rotation_list": [],
+    "next_pointer_index": 0,
+    "last_assignment_date": null,
+    "next_meeting_date": null,
+    "skipped_this_round": [],
+    "current_assigned_id": null,
+    "assignment_status": "pending"
+  },
+  "metadata": {
+    "version": "1.0",
+    "created_at": null,
+    "last_modified": null
+  }
+}
