@@ -26,19 +26,44 @@ class ConfigManager:
         self.config_data = self._load_config_file()
         
     def _load_config_file(self) -> Dict[str, Any]:
-        """Load configuration from JSON file"""
-        if not os.path.exists(self.config_path):
-            # Try to use example if main config doesn't exist
-            example_path = "config.json.example"
-            if os.path.exists(example_path):
-                print(f"Warning: Using {example_path}. Please create {self.config_path}")
-                with open(example_path, 'r') as f:
-                    return json.load(f)
-            else:
-                raise FileNotFoundError(f"Config file not found: {self.config_path}")
+        """Load configuration from JSON file or use defaults"""
+        # Try to load config file first
+        if os.path.exists(self.config_path):
+            with open(self.config_path, 'r') as f:
+                return json.load(f)
         
-        with open(self.config_path, 'r') as f:
-            return json.load(f)
+        # Try example config
+        example_path = "config.json.example"
+        if os.path.exists(example_path):
+            print(f"Warning: Using {example_path}. Please create {self.config_path}")
+            with open(example_path, 'r') as f:
+                return json.load(f)
+        
+        # Use environment variables and defaults for Railway
+        print("No config file found, using environment variables and defaults")
+        return self._get_default_config()
+    
+    def _get_default_config(self) -> Dict[str, Any]:
+        """Get default configuration for Railway deployment"""
+        # Parse admin IDs from environment variable
+        admin_ids_str = os.getenv("ADMIN_IDS", "")
+        admin_ids = []
+        if admin_ids_str:
+            try:
+                # Support comma-separated list: "123456789,987654321"
+                admin_ids = [int(id.strip()) for id in admin_ids_str.split(",") if id.strip()]
+            except ValueError:
+                print("Warning: Invalid ADMIN_IDS format. Using empty list.")
+        
+        return {
+            "admin_ids": admin_ids,
+            "notification_time": os.getenv("NOTIFICATION_TIME", "10:00"),
+            "response_window_hours": int(os.getenv("RESPONSE_WINDOW_HOURS", "24")),
+            "database_file_path": os.getenv("DATABASE_PATH", "data/db.json"),
+            "timezone": os.getenv("TIMEZONE", "UTC"),
+            "default_meeting_day": os.getenv("MEETING_DAY", "Wednesday"),
+            "notification_day": os.getenv("NOTIFICATION_DAY", "Thursday")
+        }
     
     def get_bot_config(self) -> BotConfig:
         """Get complete bot configuration"""
