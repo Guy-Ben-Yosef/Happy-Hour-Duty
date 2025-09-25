@@ -56,14 +56,17 @@ class RefBot:
         from src.handlers.signup_handler import SignupHandler
         from src.handlers.admin_commands import AdminCommandHandler
         from src.handlers.callback_handlers import CallbackHandler
+        from src.handlers.help_handler import HelpHandler
         
         # Initialize handlers
         signup_handler = SignupHandler()
         admin_handler = AdminCommandHandler()
         callback_handler = CallbackHandler()
+        help_handler = HelpHandler()
         
-        # Register command handlers (these have priority)
+        # Register basic command handlers (these have priority)
         self.application.add_handler(CommandHandler("start", signup_handler.start_command))
+        self.application.add_handler(CommandHandler("help", help_handler.help_command))
         
         # Register admin command handlers
         self.application.add_handler(CommandHandler("admin_status", admin_handler.admin_status))
