@@ -62,7 +62,7 @@ class RefBot:
         admin_handler = AdminCommandHandler()
         callback_handler = CallbackHandler()
         
-        # Register command handlers
+        # Register command handlers (these have priority)
         self.application.add_handler(CommandHandler("start", signup_handler.start_command))
         
         # Register admin command handlers
@@ -78,3 +78,45 @@ class RefBot:
         
         # Register callback query handler for inline buttons
         self.application.add_handler(CallbackQueryHandler(callback_handler.handle_callback))
+        
+        # Register message handler for text messages (this should be last to avoid conflicts)
+        self.application.add_handler(
+            MessageHandler(filters.TEXT & ~filters.COMMAND, signup_handler.handle_message)
+        )
+        
+        self.logger.info("All handlers registered successfully")
+    
+    async def run(self):
+        """Start the bot and keep it running"""
+        await self.setup()
+        
+        try:
+            # Start the application
+            await self.application.start()
+            await self.application.updater.start_polling()
+            
+            self.logger.info("RefBot is running...")
+            
+            # Keep the bot running until interrupted
+            while True:
+                await asyncio.sleep(1)
+                
+        except KeyboardInterrupt:
+            self.logger.info("Bot stopped by user")
+        except Exception as e:
+            self.logger.error(f"Error running bot: {e}", exc_info=True)
+        finally:
+            await self.shutdown()
+    
+    async def shutdown(self):
+        """Gracefully shutdown the bot"""
+        self.logger.info("Shutting down RefBot...")
+        
+        if self.scheduler:
+            self.scheduler.shutdown()
+        
+        if self.application:
+            await self.application.stop()
+            await self.application.shutdown()
+        
+        self.logger.info("RefBot shutdown complete")

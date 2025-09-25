@@ -43,11 +43,19 @@ class SignupHandler:
                 "This will be used to identify you in the rotation schedule."
             )
     
+    async def handle_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Handle all text messages (including name responses)"""
+        # Check if we're waiting for a name
+        if context.user_data.get('awaiting_name'):
+            await self.handle_name_response(update, context)
+        else:
+            # For other messages, you can add general handling or ignore
+            await update.message.reply_text(
+                "I didn't understand that. Use /start to begin registration or contact an admin if you need help."
+            )
+    
     async def handle_name_response(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Handle user's name input"""
-        if not context.user_data.get('awaiting_name'):
-            return
-        
         user = update.effective_user
         full_name = update.message.text.strip()
         
