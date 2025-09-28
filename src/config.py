@@ -26,8 +26,16 @@ class ConfigManager:
         self.config_data = self._load_config_file()
         
     def _load_config_file(self) -> Dict[str, Any]:
-        """Load configuration from JSON file or use defaults"""
-        # Try to load config file first
+        """Load configuration from CONFIG_JSON env var, JSON file, or use defaults"""
+        # Try to load from CONFIG_JSON environment variable first
+        config_json = os.getenv('CONFIG_JSON')
+        if config_json:
+            try:
+                return json.loads(config_json)
+            except json.JSONDecodeError:
+                print("Warning: Failed to parse CONFIG_JSON environment variable")
+
+        # Try to load config file if environment variable not available
         if os.path.exists(self.config_path):
             with open(self.config_path, 'r') as f:
                 return json.load(f)
