@@ -49,10 +49,10 @@ class HelpHandler:
     def _get_unregistered_help(self) -> str:
         """Help for unregistered users"""
         return (
-            "🤖 **RefBot - Refreshment Rotation Bot**\n\n"
-            "Welcome! This bot manages weekly refreshment duty assignments.\n\n"
+            "🤖 **Happy Hour Duty Bot**\n\n"
+            "Welcome! This bot manages weekly Happy Hour duty assignments.\n\n"
             "**Available Commands:**\n"
-            "• `/start` - Register for the refreshment rotation\n"
+            "• `/start` - Register for Happy Hour Duty\n"
             "• `/help` - Show this help message\n\n"
             "**Getting Started:**\n"
             "1. Use `/start` to begin registration\n"
@@ -79,14 +79,14 @@ class HelpHandler:
     def _get_participant_help(self) -> str:
         """Help for approved participants"""
         return (
-            "✅ **RefBot - You're an Approved Participant**\n\n"
-            "You're part of the refreshment rotation! Here's what you need to know:\n\n"
+            "✅ **Happy Hour Duty Bot - You're an Approved Participant**\n\n"
+            "You're part of the Happy Hour Duty rotation! Here's what you need to know:\n\n"
             "**Available Commands:**\n"
             "• `/help` - Show this help message\n\n"
             "**How It Works:**\n"
             "🔔 **Notifications:** You'll receive a message when it's your turn\n"
             "⏰ **Response Time:** You have 24 hours to confirm or decline\n"
-            "✅ **Confirm:** Click the confirm button if you can bring refreshments\n"
+            "✅ **Confirm:** Click the confirm button if you can take Happy Hour Duty\n"
             "❌ **Decline:** Click decline if you can't (duty goes to next person)\n\n"
             "**Important Notes:**\n"
             "• The bot will automatically find someone else if you decline\n"
@@ -98,10 +98,10 @@ class HelpHandler:
     
     def _get_admin_help(self) -> str:
         """Help for administrators"""
-        participant_section = self._get_participant_help().replace("✅ **RefBot - You're an Approved Participant**", "**As a Participant**")
+        participant_section = self._get_participant_help().replace("✅ **Happy Hour Duty Bot - You're an Approved Participant**", "**As a Participant**")
         
         return (
-            "👮 **RefBot - Administrator Commands**\n\n"
+            "👮 **Happy Hour Duty Bot - Administrator Commands**\n\n"
             "**User Management:**\n"
             "• `/list_users` - Show all participants and their status\n"
             "• `/remove_user <ID>` - Remove a user from rotation\n\n"

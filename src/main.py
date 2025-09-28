@@ -1,5 +1,5 @@
 """
-Telegram Refreshment Rotation Bot (RefBot)
+Telegram Happy Hour Duty Bot
 Main entry point for the application
 """
 
@@ -18,12 +18,12 @@ from src.utils.logger import setup_logging
 def main():
     """Main entry point"""
     # Set up logging
-    log_file = os.getenv("LOG_FILE", "logs/refbot.log")
+    log_file = os.getenv("LOG_FILE", "logs/happy_hour_duty.log")
     log_level = os.getenv("LOG_LEVEL", "INFO")
     logger = setup_logging(log_level=log_level, log_file=log_file)
     
     logger.info("="*50)
-    logger.info("Starting RefBot - Telegram Refreshment Rotation Bot")
+    logger.info("Starting Happy Hour Duty Bot")
     logger.info("="*50)
     
     try:

@@ -1,6 +1,6 @@
-# Telegram Refreshment Rotation Bot (RefBot)
+# Telegram Happy Hour Duty Bot
 
-A Telegram bot that automates the management of weekly refreshment duties for standing meetings.
+A Telegram bot that automates the management of weekly Happy Hour Duty for standing meetings.
 
 ## Features
 
@@ -25,7 +25,7 @@ A Telegram bot that automates the management of weekly refreshment duties for st
 ```bash
 # Run the setup script to create project structure
 bash setup.sh
-cd refbot
+cd happy-hour-duty
 ```
 
 2. **Set up Python virtual environment:**

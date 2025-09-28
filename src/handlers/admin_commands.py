@@ -155,7 +155,7 @@ class AdminCommandHandler:
             db_manager.update_schedule(schedule)
             
             await update.message.reply_text(
-                f"✅ Manually assigned refreshment duty to:\n"
+                f"✅ Manually assigned Happy Hour Duty to:\n"
                 f"**{participant.full_name}** (ID: {participant_id})\n\n"
                 f"Meeting date: {schedule.next_meeting_date}\n\n"
                 f"They will be notified shortly.",

@@ -158,7 +158,7 @@ class NotificationManager:
         
         message = (
             f"✅ **Duty Confirmed**\n\n"
-            f"{participant.full_name} has confirmed refreshment duty for {formatted_date}"
+            f"{participant.full_name} has confirmed happy hour duty for {formatted_date}"
         )
         
         # Send to all admins

@@ -7,7 +7,7 @@ from src.database.db_manager import DatabaseManager
 from src.schedule.scheduler import WeeklyScheduler
 from typing import Optional
 
-class RefBot:
+class HappyHourDutyBot:
     """Main bot class that coordinates all bot functionality"""
     
     def __init__(self):
@@ -26,7 +26,7 @@ class RefBot:
     
     async def setup(self):
         """Set up the bot application and handlers"""
-        self.logger.info("Setting up RefBot...")
+        self.logger.info("Setting up Happy Hour Duty Bot...")
         
         # Create application with proper async context
         self.application = Application.builder().token(self.config.bot_token).build()
@@ -49,7 +49,7 @@ class RefBot:
         # Initialize the scheduler
         await self.scheduler.initialize()
         
-        self.logger.info("RefBot setup complete")
+        self.logger.info("Happy Hour Duty Bot setup complete")
     
     def _register_handlers(self):
         """Register all command and message handlers"""
@@ -98,7 +98,7 @@ class RefBot:
             await self.application.start()
             await self.application.updater.start_polling()
             
-            self.logger.info("RefBot is running...")
+            self.logger.info("Happy Hour Duty Bot is running...")
             
             # Keep the bot running until interrupted
             while True:
@@ -113,7 +113,7 @@ class RefBot:
     
     async def shutdown(self):
         """Gracefully shutdown the bot"""
-        self.logger.info("Shutting down RefBot...")
+        self.logger.info("Shutting down Happy Hour Duty Bot...")
         
         if self.scheduler:
             self.scheduler.shutdown()
@@ -122,4 +122,4 @@ class RefBot:
             await self.application.stop()
             await self.application.shutdown()
         
-        self.logger.info("RefBot shutdown complete")
+        self.logger.info("Happy Hour Duty bot shutdown complete")

@@ -7,7 +7,7 @@ class MessageTemplates:
     @staticmethod
     def welcome_message() -> str:
         return (
-            "Welcome to the Refreshment Rotation Bot! 🎉\n\n"
+            "Welcome to the Happy Hour Duty Bot! 🎉\n\n"
             "To get started, please tell me your full name.\n"
             "This will be used to identify you in the rotation schedule."
         )
@@ -25,7 +25,7 @@ class MessageTemplates:
         if status == "approved":
             return (
                 f"👋 Hello {name}!\n\n"
-                "You're already registered and approved for the refreshment rotation.\n"
+                "You're already registered and approved for Happy Hour Duty.\n"
                 "You'll receive notifications when it's your turn."
             )
         elif status == "pending":
@@ -40,9 +40,9 @@ class MessageTemplates:
     @staticmethod
     def duty_notification(name: str, meeting_date: str) -> str:
         return (
-            f"🔔 **Refreshment Duty Reminder**\n\n"
+            f"🔔 **Happy Hour Duty Reminder**\n\n"
             f"Hello {name}!\n\n"
-            f"You're scheduled to bring refreshments for the meeting on:\n"
+            f"You're scheduled for Happy Hour Duty for the meeting on:\n"
             f"📅 **{meeting_date}**\n\n"
             f"Please confirm whether you can fulfill this responsibility."
         )
@@ -52,7 +52,7 @@ class MessageTemplates:
         return (
             f"✅ **Confirmed!**\n\n"
             f"Thank you {name}!\n\n"
-            f"You're all set to bring refreshments on {meeting_date}.\n"
+            f"You're all set for Happy Hour Duty on {meeting_date}.\n"
             f"See you at the meeting! ☕️🍪"
         )
     
@@ -68,7 +68,7 @@ class MessageTemplates:
     def escalation_alert(meeting_date: str) -> str:
         return (
             "⚠️ **ESCALATION ALERT**\n\n"
-            f"No one has confirmed refreshment duty for the meeting on {meeting_date}.\n\n"
+            f"No one has confirmed Happy Hour Duty for the meeting on {meeting_date}.\n\n"
             "The entire rotation list has been exhausted.\n"
             "Manual intervention required."
         )
@@ -88,7 +88,7 @@ class MessageTemplates:
         return (
             "🎉 **Great news!**\n\n"
             "Your registration has been approved!\n"
-            "You've been added to the refreshment rotation list.\n\n"
+            "You've been added to the Happy Hour Duty list.\n\n"
             "You'll receive a notification when it's your turn to bring refreshments."
         )
     
@@ -103,7 +103,7 @@ class MessageTemplates:
     def timeout_warning(hours_remaining: int) -> str:
         return (
             f"⏰ **Reminder**\n\n"
-            f"You have {hours_remaining} hours remaining to respond to your refreshment duty assignment.\n"
+            f"You have {hours_remaining} hours remaining to respond to your happy hour duty assignment.\n"
             f"Please confirm or decline soon."
         )
     

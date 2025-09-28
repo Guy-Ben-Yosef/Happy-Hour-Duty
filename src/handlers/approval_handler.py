@@ -46,7 +46,7 @@ class ApprovalHandler:
                         text=(
                             "🎉 **Great news!**\n\n"
                             "Your registration has been approved!\n"
-                            "You've been added to the refreshment rotation list.\n\n"
+                            "You've been added to the Happy Hour Duty list.\n\n"
                             "You'll receive a notification when it's your turn to bring refreshments."
                         ),
                         parse_mode='Markdown'

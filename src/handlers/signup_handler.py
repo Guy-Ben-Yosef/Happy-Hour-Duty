@@ -21,7 +21,7 @@ class SignupHandler:
             if participant.status == UserStatus.APPROVED.value:
                 await update.message.reply_text(
                     f"👋 Hello {participant.full_name}!\n\n"
-                    "You're already registered and approved for the refreshment rotation.\n"
+                    "You're already registered and approved for the happy hour duty.\n"
                     "You'll receive notifications when it's your turn."
                 )
             elif participant.status == UserStatus.PENDING.value:
@@ -38,7 +38,7 @@ class SignupHandler:
             # New user - store state and ask for name
             context.user_data['awaiting_name'] = True
             await update.message.reply_text(
-                "Welcome to the Refreshment Rotation Bot! 🎉\n\n"
+                "Welcome to the Happy Hour Duty Bot! 🎉\n\n"
                 "To get started, please tell me your full name.\n"
                 "This will be used to identify you in the rotation schedule."
             )
