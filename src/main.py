@@ -12,7 +12,7 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.bot.bot_core import RefBot
+from src.bot.bot_core import HappyHourDutyBot
 from src.utils.logger import setup_logging
 
 def main():
@@ -28,7 +28,7 @@ def main():
     
     try:
         # Create bot
-        bot = RefBot()
+        bot = HappyHourDutyBot()
         
         async def start_bot():
             await bot.setup()
